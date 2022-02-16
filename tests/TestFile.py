@@ -1,9 +1,8 @@
 import unittest
-import sys,os
+import sys
 
 sys.path.append("src")
-from script import *
-
+from script import header, connect
 
 class TestFile(unittest.TestCase):
     def test_header(self):

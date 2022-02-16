@@ -4,7 +4,7 @@ from zipfile import ZipFile
 
 def file():
     try:
-        with ZipFile('temp.apkg', 'r') as apkg_file:
+        with ZipFile('src/temp.apkg', 'r') as apkg_file:
             file = apkg_file.read('collection.anki2')
             with open('tempfile', 'wb') as f:
                 f.write(file)
@@ -39,7 +39,7 @@ def values(conn):
 
 def saveToCsv():
     try:
-        with open('output.csv', 'w') as f:
+        with open('src/output.csv', 'w') as f:
             tempfile = connect('tempfile')
             f.write(','.join(header(tempfile)))
             f.write('\n')
@@ -52,6 +52,7 @@ def saveToCsv():
     
 
 def __main__():
+    file()
     saveToCsv()
     
 __main__()
