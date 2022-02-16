@@ -1,6 +1,6 @@
 import sqlite3
 import json 
-from zipfile import ZipFile 
+from zipfile import ZipFile
 
 def file():
     try:
@@ -12,8 +12,6 @@ def file():
     except Exception as e:
         print(e)
         
-file()
-
 def connect(db_file):
     conn = None
     try:
@@ -38,7 +36,22 @@ def values(conn):
     rows = cur.fetchall()
     
     return [_[0].split("\x1f") for _ in rows]
+
+def saveToCsv():
+    try:
+        with open('output.csv', 'w') as f:
+            tempfile = connect('tempfile')
+            f.write(','.join(header(tempfile)))
+            f.write('\n')
+            for i in values(tempfile):
+                f.write(','.join(i))
+                f.write('\n')
+
+    except Exception as e:
+        print(e)
     
-f = connect('tempfile')
-print(header(f))
-print(values(f))
+
+def __main__():
+    saveToCsv()
+    
+__main__()
