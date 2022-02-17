@@ -50,9 +50,3 @@ def saveToCsv():
     except Exception as e:
         print(e)
     
-
-def __main__():
-    file()
-    saveToCsv()
-    
-__main__()
