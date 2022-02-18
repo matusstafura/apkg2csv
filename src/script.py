@@ -2,9 +2,9 @@ import sqlite3
 import json 
 from zipfile import ZipFile
 
-def file():
+def file(f):
     try:
-        with ZipFile('src/temp.apkg', 'r') as apkg_file:
+        with ZipFile(f, 'r') as apkg_file:
             file = apkg_file.read('collection.anki2')
             with open('tempfile', 'wb') as f:
                 f.write(file)
@@ -37,9 +37,9 @@ def values(conn):
     
     return [_[0].split("\x1f") for _ in rows]
 
-def saveToCsv():
+def save_to_csv(f):
     try:
-        with open('src/output.csv', 'w') as f:
+        with open(f, 'w') as f:
             tempfile = connect('tempfile')
             f.write(','.join(header(tempfile)))
             f.write('\n')

@@ -4,11 +4,21 @@ Converts .apkg Anki deck SRS file to .csv
 
 ## Requirements
 
+- Python 3
+
 ## Installation
 
 ## Usage
 
+```python
+python src/run.py filename.apkg
+```
+
 ## Tests
+
+```python
+python -m unittest tests.TestFile
+```
 
 ## Contributions
 
