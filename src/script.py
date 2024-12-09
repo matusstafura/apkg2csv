@@ -1,11 +1,12 @@
 import sqlite3
 import json 
+import csv
 from zipfile import ZipFile
 
 def file(f):
     try:
         with ZipFile(f, 'r') as apkg_file:
-            file = apkg_file.read('collection.anki2')
+            file = apkg_file.read('collection.anki21')
             with open('tempfile', 'wb') as f:
                 f.write(file)
 
@@ -39,14 +40,15 @@ def values(conn):
 
 def save_to_csv(f):
     try:
-        with open(f, 'w') as f:
+        with open(f, 'w', newline='') as file:
             tempfile = connect('tempfile')
-            f.write(','.join(header(tempfile)))
-            f.write('\n')
+            writer = csv.writer(file, quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            
+            writer.writerow(header(tempfile))
+            
             for i in values(tempfile):
-                f.write(','.join(i))
-                f.write('\n')
+                writer.writerow(i)
 
     except Exception as e:
         print(e)
-    
+            

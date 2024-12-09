@@ -10,7 +10,8 @@ Converts .apkg Anki deck SRS file to .csv
 
 ## Usage
 
-copy .apkg file to project's root and run
+- export Deck in Anki (for older versions, click Support older Anki versions)
+- copy .apkg file to project's root and run
 
 ```python
 python src/run.py {filename}.apkg
