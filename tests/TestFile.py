@@ -1,17 +1,19 @@
-from string import capwords
 import unittest
 import sys
-
+from string import capwords
 sys.path.append("src")
-from script import header, connect, values
+from dbconnect import DBConnect
 
 class TestFile(unittest.TestCase):
+    def setUp(self):
+        self.conn = DBConnect.connect('tests/tempfile')
+
     def test_header(self):
-        x = header(connect('tests/tempfile'))
-        self.assertEqual(['English', 'French', 'Word Type', 'Example', 'Example in English'],x)
+        header = DBConnect.header(self.conn)
+        self.assertEqual(['English', 'French', 'Word Type', 'Example', 'Example in English'],header)
     
     def test_values(self):
-        cards = values(connect('tests/tempfile'))
+        cards = DBConnect.values(self.conn)
         self.assertEqual([
             ['cat', 'le chat', 'noun', 'je vois le chat', 'I see the cat'],
             ['chien', 'le chien', 'noun', 'le chien me voit', 'the dog sees me'],
@@ -19,7 +21,7 @@ class TestFile(unittest.TestCase):
         cards)
     
     def test_file(self):
-        notAFile = connect('tests/temp.apkg')
+        notAFile = DBConnect.connect('tests/temp.apkg')
         self.assertRaises(Exception,notAFile)
 
 if __name__ == '__main__':

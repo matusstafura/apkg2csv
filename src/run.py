@@ -1,14 +1,13 @@
 import os
 import sys
-from script import save_to_csv, file
+from file import unzip_file, save_to_csv
 
 def __main__():
     try:
         if os.path.exists(sys.argv[1]):
             apkg_file = sys.argv[1]
-            csv_file = f'{apkg_file}.csv'
-            file(apkg_file)
-            save_to_csv(csv_file)
+            unzip_file(apkg_file)
+            save_to_csv(f'{apkg_file}.csv')
         else:
             exit
     except Exception as e:
