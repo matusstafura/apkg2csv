@@ -14,7 +14,7 @@ def unzip_file(f):
 
 def save_to_csv(f):
     try:
-        with open(f, 'w', newline='') as file:
+        with open(f, 'w', newline='', encoding='utf-8') as file:
             tempfile = db.connect('tempfile')
             writer = csv.writer(file, quotechar='"', quoting=csv.QUOTE_MINIMAL)
             
